@@ -5,6 +5,7 @@ import lombok.Getter;
 
 import java.util.Arrays;
 import java.util.UUID;
+import java.util.stream.IntStream;
 
 @Getter
 public class Game {
@@ -46,33 +47,36 @@ public class Game {
     }
 
     private boolean checkWin(String player) {
-        // Row & column checks
+
+        // TODO create a new logic to check win row, col, diaonal, and anti-diagonal
+        // row & col check
         for (int i = 0; i < boardSize; i++) {
-            if (Arrays.stream(board[i]).allMatch(cell -> cell.equals(player)))
+            // lambda expression can only access final or effectively final variable
+            final int row = i;
+            // check row
+            if (Arrays.stream(board[i]).allMatch(cell -> cell.equals(player))) {
                 return true;
-            boolean colWin = true;
-            for (int j = 0; j < boardSize; j++) {
-                if (!board[j][i].equals(player)) {
-                    colWin = false;
-                    break;
-                }
             }
-            if (colWin)
+            // check column
+            if (Arrays.stream(board).allMatch(col -> col[row].equals(player))) {
                 return true;
+            }
+        }
+        // Check main diagonal
+        if (IntStream.range(0, boardSize).allMatch(i -> board[i][i].equals(player))) {
+            return true;
         }
 
-        // Diagonal checks
-        boolean diag1 = true, diag2 = true;
-        for (int i = 0; i < boardSize; i++) {
-            if (!board[i][i].equals(player))
-                diag1 = false;
-            if (!board[i][boardSize - i - 1].equals(player))
-                diag2 = false;
+        // Check anti-diagonal
+        if (IntStream.range(0, boardSize).allMatch(i -> board[i][boardSize - 1 - i].equals(player))) {
+            return true;
         }
-        return diag1 || diag2;
+
+        return false;
     }
 
     private boolean isDraw() {
+        // check board is full?
         for (int r = 0; r < boardSize; r++) {
             for (int c = 0; c < boardSize; c++) {
                 if (board[r][c].equals(""))
