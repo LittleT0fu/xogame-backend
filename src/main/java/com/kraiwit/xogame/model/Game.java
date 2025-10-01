@@ -48,7 +48,6 @@ public class Game {
 
     private boolean checkWin(String player) {
 
-        // TODO create a new logic to check win row, col, diaonal, and anti-diagonal
         // row & col check
         for (int i = 0; i < boardSize; i++) {
             // lambda expression can only access final or effectively final variable
