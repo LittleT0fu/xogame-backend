@@ -43,6 +43,8 @@ public class GameService {
             return new GameResponse(game);
         }
 
+        // TODO AI make move
+
         return new GameResponse(game);
     }
 
