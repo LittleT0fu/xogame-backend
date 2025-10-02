@@ -1,16 +1,129 @@
-# xogame-backend
+# XO Game Backend
 
-xogame backend project create with spring boot framework
+A Tic-Tac-Toe game backend API built with Spring Boot that features an AI opponent using the Minimax algorithm.
 
-## Dependencies
+## Prerequisites
 
-This project uses the following dependencies:
+Before setting up this project, ensure you have the following installed on your system:
 
--   **Spring Boot Starter Web** - Provides RESTful web services capabilities including embedded Tomcat server
--   **Spring Boot Starter Data JPA** - Enables Java Persistence API for database operations and ORM functionality
--   **Spring Boot DevTools** - Development tools for hot reloading and debugging (runtime scope)
+-   **Java Development Kit (JDK) 21** or higher
+    -   [Download JDK](https://www.oracle.com/java/technologies/downloads/)
+    -   Verify installation: `java -version`
+-   **Apache Maven 3.6+**
+    -   [Download Maven](https://maven.apache.org/download.cgi)
+    -   Verify installation: `mvn -version`
+-   **MySQL 8.0+**
+    -   [Download MySQL](https://dev.mysql.com/downloads/mysql/)
+    -   Verify installation: `mysql --version`
 
-### Build Tools
+## Setup Instructions
 
--   **Spring Boot Maven Plugin** - Maven plugin for packaging and running Spring Boot applications
--   **Java 21** - Programming language version
+### 1. Clone the Repository
+
+```bash
+git clone <repository-url>
+cd xogame-backend
+```
+
+### 2. Configure MySQL Database
+
+1. Start your MySQL server
+2. Create a database named `xogame`:
+
+```sql
+CREATE DATABASE xogame;
+```
+
+3. Update database credentials (if needed) in `src/main/resources/application.properties`:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/xogame
+spring.datasource.username=root
+spring.datasource.password=root
+```
+
+> **Note:** The application will automatically create required tables on first run using JPA's `hibernate.ddl-auto=update` configuration.
+
+### 3. Install Dependencies
+
+```bash
+mvn clean install
+```
+
+## Running the Application
+
+### Option 1: Using Maven
+
+```bash
+mvn spring-boot:run
+```
+
+### Option 2: Using Maven Wrapper (Windows)
+
+```cmd
+mvnw.cmd spring-boot:run
+```
+
+### Option 3: Using Maven Wrapper (Linux/Mac)
+
+```bash
+./mvnw spring-boot:run
+```
+
+### Option 4: Run JAR File
+
+```bash
+mvn clean package
+java -jar target/xogame-0.0.1-SNAPSHOT.jar
+```
+
+The application will start on **http://localhost:8080**
+
+## API Endpoints
+
+| Method | Endpoint         | Description             |
+| ------ | ---------------- | ----------------------- |
+| GET    | `/game`          | Health check endpoint   |
+| POST   | `/game/start`    | Start a new game        |
+| POST   | `/game/makemove` | Make a move in the game |
+| POST   | `/game/cancel`   | Cancel an ongoing game  |
+| GET    | `/game/history`  | Get game history        |
+
+### Example Requests
+
+**Start a New Game:**
+
+```bash
+POST http://localhost:8080/game/start
+Content-Type: application/json
+
+{
+  "playerName": "Player1",
+  "difficulty": "EASY"
+}
+```
+
+**Make a Move:**
+
+```bash
+POST http://localhost:8080/game/makemove
+Content-Type: application/json
+
+{
+  "gameId": "game-id-here",
+  "position": 0
+}
+```
+
+## Technologies Used
+
+-   **Java 21** - Programming language
+-   **Spring Boot 3.5.6** - Application framework
+-   **Spring Data JPA** - Database operations and ORM
+-   **Hibernate** - ORM implementation
+-   **MySQL** - Relational database
+-   **Maven** - Build automation and dependency management
+-   **Lombok** - Reduce boilerplate code
+-   **Spring Boot Starter Validation** - Input validation
+
+## Project Structure

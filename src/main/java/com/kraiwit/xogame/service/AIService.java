@@ -78,15 +78,6 @@ public class AIService {
         return bestMove != null ? bestMove : getRandomMove(game);
     }
 
-    /**
-     * Minimax algorithm to evaluate board positions
-     * 
-     * @param game         Current game state
-     * @param depth        Current depth in the game tree
-     * @param isMaximizing True if maximizing player (AI), false if minimizing
-     *                     (human)
-     * @return Score of the board position
-     */
     private int minimax(Game game, int depth, boolean isMaximizing) {
         String[][] board = game.getBoard();
         int boardSize = game.getBoardSize();
@@ -134,13 +125,6 @@ public class AIService {
         }
     }
 
-    /**
-     * Check if there's a winner or draw
-     * 
-     * @param board     Current board state
-     * @param boardSize Size of the board
-     * @return "X" if X wins, "O" if O wins, "DRAW" if draw, null if game continues
-     */
     private String checkWinner(String[][] board, int boardSize) {
         // Check rows and columns
         for (int i = 0; i < boardSize; i++) {
