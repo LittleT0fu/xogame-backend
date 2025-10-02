@@ -44,6 +44,16 @@ spring.datasource.password=root
 
 > **Note:** The application will automatically create required tables on first run using JPA's `hibernate.ddl-auto=update` configuration.
 
+4. Configure CORS Settings
+
+By default, browsers block API requests from different origins (domains, ports, or protocols) for security reasons. The backend is configured to accept requests from specific origins:
+
+- http://localhost:5173 (for Vite apps) default frontend project use this
+- http://localhost:3000 (for React.js apps)
+- http://localhost:4200 (for Angular apps)
+
+If your frontend runs on a different port or domain, update the allowed origins in `src/main/java/com/kraiwit/xogame/config/CorsConfig.java`:
+
 ### 3. Install Dependencies
 
 ```bash
