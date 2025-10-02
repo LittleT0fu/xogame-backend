@@ -1,0 +1,47 @@
+package com.kraiwit.xogame.service;
+
+import java.time.LocalDateTime;
+
+import org.springframework.stereotype.Service;
+
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kraiwit.xogame.model.Game;
+import com.kraiwit.xogame.model.History;
+import com.kraiwit.xogame.repository.HistoryRepository;
+
+import lombok.RequiredArgsConstructor;
+
+@Service
+@RequiredArgsConstructor
+public class HistoryService {
+
+    private final HistoryRepository historyRepository;
+    private final ObjectMapper objectMapper;
+
+    public void save(Game game) {
+        try {
+            History history = new History();
+            history.setGameId(game.getGameId());
+            history.setBoard(objectMapper.writeValueAsString(game.getBoard()));
+            history.setBoardSize(game.getBoardSize());
+            history.setVsAI(game.isVsAI());
+            history.setStatus(game.getStatus());
+
+            // Set winner based on game status
+            String winner = switch (game.getStatus()) {
+                case X_WIN -> "X";
+                case O_WIN -> "O";
+                case DRAW -> "DRAW";
+                default -> null;
+            };
+            history.setWinner(winner);
+            history.setCreatedAt(LocalDateTime.now());
+
+            historyRepository.save(history);
+
+        } catch (Exception e) {
+            System.err.println("Failed to save game history: " + e.getMessage());
+        }
+    }
+
+}
