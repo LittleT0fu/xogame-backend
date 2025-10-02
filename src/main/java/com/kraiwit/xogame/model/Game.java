@@ -85,4 +85,8 @@ public class Game {
         }
         return true;
     }
+
+    public void cancelGame() {
+        status = GameStatus.CANCELLED;
+    }
 }

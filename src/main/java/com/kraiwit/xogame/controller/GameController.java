@@ -50,4 +50,10 @@ public class GameController {
         return ResponseEntity.ok(history);
     }
 
+    @PostMapping("/cancel")
+    public ResponseEntity<GameResponse> cancelGame(@Valid @RequestBody String gameId) {
+        GameResponse gameResponse = gameService.cancelGame(gameId);
+        return ResponseEntity.ok(gameResponse);
+    }
+
 }

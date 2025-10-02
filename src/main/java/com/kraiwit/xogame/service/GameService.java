@@ -62,4 +62,14 @@ public class GameService {
         return new GameResponse(game);
     }
 
+    public GameResponse cancelGame(String gameId) {
+        Game game = games.get(gameId);
+        if (game == null) {
+            throw new RuntimeException("Game not found.");
+        }
+        game.cancelGame();
+        games.remove(game.getGameId());
+        return new GameResponse(game);
+    }
+
 }
