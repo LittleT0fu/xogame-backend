@@ -18,7 +18,7 @@ public class GameResponse {
         this.gameID = game.getGameId();
         this.boardSize = game.getBoardSize();
         this.board = game.getBoard();
-        this.currentPlayer = game.getCurrentPlayer();
+        this.currentPlayer = game.getCurrentPlayer().toUpperCase();
         this.status = game.getStatus().toString();
         this.winner = (game.getStatus() == GameStatus.X_WIN) ? "X"
                 : (game.getStatus() == GameStatus.O_WIN) ? "O" : null;

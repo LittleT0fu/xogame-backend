@@ -39,7 +39,7 @@ public class GameService {
         }
 
         // player make move
-        game.makeMove(moveRequest.getRow(), moveRequest.getCol(), moveRequest.getPlayer().toString());
+        game.makeMove(moveRequest.getRow(), moveRequest.getCol(), moveRequest.getPlayer().toString().toUpperCase());
 
         // If player won or draw → save history and return
         if (game.getStatus() != GameStatus.IN_PROGRESS) {

@@ -1,7 +1,6 @@
 package com.kraiwit.xogame.dto;
 
 import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
 import lombok.Data;
 import com.kraiwit.xogame.model.enums.Player;
 
@@ -15,4 +14,5 @@ public class MoveRequest {
     private int col;
     @NotNull(message = "Player is required")
     private Player player;
+
 }
