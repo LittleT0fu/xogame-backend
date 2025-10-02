@@ -1,5 +1,8 @@
 package com.kraiwit.xogame.dto;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.kraiwit.xogame.model.History;
 import com.kraiwit.xogame.model.enums.GameStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -14,7 +17,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class HistoryResponse {
     private String gameId;
-    private String board; // JSON string representation
+    private String[][] board; // Changed to 2D array
     private int boardSize;
     private boolean vsAI;
     private GameStatus status;

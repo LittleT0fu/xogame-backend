@@ -10,10 +10,8 @@ public class MoveRequest {
     @NotNull(message = "Game ID is required")
     private String gameID;
     @NotNull(message = "Row is required")
-    @Positive(message = "Row must be positive")
     private int row;
     @NotNull(message = "Column is required")
-    @Positive(message = "Column must be positive")
     private int col;
     @NotNull(message = "Player is required")
     private Player player;

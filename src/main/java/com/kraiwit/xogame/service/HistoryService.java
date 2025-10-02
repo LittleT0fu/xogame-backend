@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kraiwit.xogame.model.Game;
 import com.kraiwit.xogame.model.History;
 import com.kraiwit.xogame.repository.HistoryRepository;
@@ -17,13 +16,12 @@ import lombok.RequiredArgsConstructor;
 public class HistoryService {
 
     private final HistoryRepository historyRepository;
-    private final ObjectMapper objectMapper;
 
     public void save(Game game) {
         try {
             History history = new History();
             history.setGameId(game.getGameId());
-            history.setBoard(objectMapper.writeValueAsString(game.getBoard()));
+            history.setBoard(game.getBoard());
             history.setBoardSize(game.getBoardSize());
             history.setVsAI(game.isVsAI());
             history.setStatus(game.getStatus());

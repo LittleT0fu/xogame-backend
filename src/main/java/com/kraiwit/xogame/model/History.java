@@ -1,5 +1,6 @@
 package com.kraiwit.xogame.model;
 
+import com.kraiwit.xogame.config.StringArrayConverter;
 import com.kraiwit.xogame.model.enums.GameStatus;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
@@ -15,9 +16,9 @@ public class History {
     @Id
     private String gameId;
 
-    @Lob
-    @Column(columnDefinition = "TEXT")
-    private String board; // Store as JSON or serialized string
+    @Column(columnDefinition = "JSON")
+    @Convert(converter = StringArrayConverter.class)
+    private String[][] board;
 
     private int boardSize;
     private boolean vsAI;
