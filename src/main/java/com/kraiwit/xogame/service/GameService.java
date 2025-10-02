@@ -16,6 +16,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class GameService {
 
+    private final AIService aiService = new AIService();
+
     private final Map<String, Game> games = new ConcurrentHashMap<>();
 
     public GameResponse startGame(GameRequest gameRequest) {
@@ -43,7 +45,15 @@ public class GameService {
             return new GameResponse(game);
         }
 
-        // TODO AI make move
+        if (game.isVsAI()) {
+            int[] nextMove = aiService.getNextMove(game);
+            game.makeMove(nextMove[0], nextMove[1], game.getCurrentPlayer());
+        }
+
+        if (game.getStatus() != GameStatus.IN_PROGRESS) {
+            // TODO save game history
+            return new GameResponse(game);
+        }
 
         return new GameResponse(game);
     }
