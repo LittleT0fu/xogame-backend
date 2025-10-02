@@ -1,19 +1,15 @@
 package com.kraiwit.xogame.service;
 
-import java.time.LocalDateTime;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.springframework.stereotype.Service;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.kraiwit.xogame.dto.GameRequest;
 import com.kraiwit.xogame.dto.GameResponse;
 import com.kraiwit.xogame.dto.MoveRequest;
 import com.kraiwit.xogame.model.Game;
-import com.kraiwit.xogame.model.History;
 import com.kraiwit.xogame.model.enums.GameStatus;
-import com.kraiwit.xogame.repository.HistoryRepository;
 
 import lombok.RequiredArgsConstructor;
 
