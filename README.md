@@ -27,7 +27,7 @@ cd xogame-backend
 
 ### 2. Configure MySQL Database
 
-1. Start your MySQL server
+1. Start your MySQL server Mamp or Xampp
 2. Create a database named `xogame`:
 
 ```sql
