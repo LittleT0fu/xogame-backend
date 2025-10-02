@@ -98,8 +98,9 @@ POST http://localhost:8080/game/start
 Content-Type: application/json
 
 {
-  "playerName": "Player1",
-  "difficulty": "EASY"
+  "boardSize" : 3,
+  "isAI" : true / false,
+  "firstPlayer" : "X / O"
 }
 ```
 
@@ -110,8 +111,10 @@ POST http://localhost:8080/game/makemove
 Content-Type: application/json
 
 {
-  "gameId": "game-id-here",
-  "position": 0
+  "gameID": "game-id-here",
+  "col" : int,
+  "row" : int,
+  "player" : "X / O" get from respone currentPlayer when start game
 }
 ```
 
@@ -126,4 +129,28 @@ Content-Type: application/json
 -   **Lombok** - Reduce boilerplate code
 -   **Spring Boot Starter Validation** - Input validation
 
-## Project Structure
+## วิธีออกแบบ
+
+เมื่อเริ่มเกมให้ใช้
+| POST | `/game/start` | Start a new game |
+เพื่อระบุขนาดสนามและสู้กับ AI ใช่ไหม
+หลังจากนั้นโปรแกรมจะเรียกใช้ GameService เพื่อสร้างเกมเก็บใว้ใน memory
+(ถ้าเริ่มเซิฟใหม่เกมที่กำลังดำเนินการอยู่จะหายไป)
+แล้วส่งค่าของเกมนั้นกลับ (gameID ,ข้อมูลสนาม ,ผู้เล่นคณะนั้น)
+start game : request -> GameController -> Game service -> create and store in memory
+
+การเดิน
+| POST | `/game/makemove` | Make a move in the game |
+ส่ง gameID และตำแหน่ง (col , row) และ player คณะนั้นไปเพื่อทำการเดินในเทิร์น
+start game : request -> GameController -> Game service -> Game -> makemove method
+
+## AI algorithm
+
+จะใช้อย่างคือ minimax และการ random
+โดยจะสุ่มให้ 70% เป็น best move และ 30% เป็น random
+
+โดย best move จะใช้ Minimax algorithm
+
+### Minimax algorithm
+
+Minimax คืออัลกอริทึมสำหรับเกม 2 ผู้เล่น ทำงานโดยสำรวจทุกท่าที่เป็นไปได้ล่วงหน้า ผู้เล่นหนึ่งพยายามเพิ่มคะแนนสูงสุด (Max) อีกฝ่ายพยายามลดคะแนนต่ำสุด (Min) สลับกันไปจนเลือกท่าที่ดีที่สุดได้ โดยสมมติว่าคู่แข่งเล่นอย่างสมบูรณ์แบบ
