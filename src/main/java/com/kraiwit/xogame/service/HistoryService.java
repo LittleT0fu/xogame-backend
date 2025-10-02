@@ -1,6 +1,7 @@
 package com.kraiwit.xogame.service;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import org.springframework.stereotype.Service;
 
@@ -42,6 +43,10 @@ public class HistoryService {
         } catch (Exception e) {
             System.err.println("Failed to save game history: " + e.getMessage());
         }
+    }
+
+    public List<History> getHistory() {
+        return historyRepository.findAll();
     }
 
 }
