@@ -1,6 +1,7 @@
 package com.kraiwit.xogame.model;
 
 import com.kraiwit.xogame.model.enums.GameStatus;
+
 import lombok.Getter;
 
 import java.util.Arrays;

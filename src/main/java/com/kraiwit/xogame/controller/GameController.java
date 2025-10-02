@@ -13,12 +13,14 @@ import com.kraiwit.xogame.service.GameService;
 
 import org.springframework.http.ResponseEntity;
 import jakarta.validation.Valid;
+import lombok.RequiredArgsConstructor;
 
 @RestController
 @RequestMapping("/game")
+@RequiredArgsConstructor
 public class GameController {
 
-    private final GameService gameService = new GameService();
+    private final GameService gameService;
 
     @GetMapping
     public String helloWorld() {
