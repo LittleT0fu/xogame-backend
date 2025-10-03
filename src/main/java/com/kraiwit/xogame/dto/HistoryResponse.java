@@ -24,4 +24,5 @@ public class HistoryResponse {
     private String winner;
     private String[] winningLine;
     private LocalDateTime createdAt;
+    private String firstPlayer;
 }

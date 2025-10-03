@@ -35,4 +35,6 @@ public class History {
     private List<int[]> winningLine;
 
     private LocalDateTime createdAt;
+
+    private String firstPlayer;
 }

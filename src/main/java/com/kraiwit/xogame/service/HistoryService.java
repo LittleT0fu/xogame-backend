@@ -39,6 +39,7 @@ public class HistoryService {
             if (!winningLine.isEmpty()) {
                 history.setWinningLine(winningLine);
             }
+            history.setFirstPlayer(game.getFirstPlayer());
             historyRepository.save(history);
 
         } catch (Exception e) {
@@ -47,7 +48,7 @@ public class HistoryService {
     }
 
     public List<History> getHistory() {
-        return historyRepository.findAll();
+        return historyRepository.findAllByOrderByCreatedAtDesc();
     }
 
 }

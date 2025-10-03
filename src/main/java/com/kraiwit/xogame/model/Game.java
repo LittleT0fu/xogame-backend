@@ -18,11 +18,13 @@ public class Game {
     private boolean vsAI;
     private String currentPlayer;
     private GameStatus status = GameStatus.IN_PROGRESS;
+    private String firstPlayer;
 
     public Game(int boardSize, boolean vsAI, String firstPlayer) {
         this.boardSize = boardSize;
         this.vsAI = vsAI;
         this.currentPlayer = firstPlayer;
+        this.firstPlayer = firstPlayer;
         this.board = new String[boardSize][boardSize];
         for (int r = 0; r < boardSize; r++) {
             Arrays.fill(board[r], "");
