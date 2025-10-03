@@ -88,12 +88,6 @@ public class Game {
         return true;
     }
 
-    /**
-     * Calculates and returns the winning line coordinates.
-     * 
-     * @return List of int arrays [row, col] representing the winning line, or empty
-     *         list if no winner
-     */
     public List<int[]> getWinningLine() {
         List<int[]> winningLine = new ArrayList<>();
 
