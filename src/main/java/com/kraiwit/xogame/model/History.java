@@ -1,9 +1,11 @@
 package com.kraiwit.xogame.model;
 
+import com.kraiwit.xogame.config.IntArrayListConverter;
 import com.kraiwit.xogame.config.StringArrayConverter;
 import com.kraiwit.xogame.model.enums.GameStatus;
 import jakarta.persistence.*;
 import java.time.LocalDateTime;
+import java.util.List;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -27,5 +29,10 @@ public class History {
     private GameStatus status;
 
     private String winner;
+
+    @Column(columnDefinition = "JSON")
+    @Convert(converter = IntArrayListConverter.class)
+    private List<int[]> winningLine;
+
     private LocalDateTime createdAt;
 }

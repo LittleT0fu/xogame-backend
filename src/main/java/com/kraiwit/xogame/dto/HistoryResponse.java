@@ -17,10 +17,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class HistoryResponse {
     private String gameId;
-    private String[][] board; // Changed to 2D array
+    private String[][] board;
     private int boardSize;
     private boolean vsAI;
     private GameStatus status;
     private String winner;
+    private String[] winningLine;
     private LocalDateTime createdAt;
 }

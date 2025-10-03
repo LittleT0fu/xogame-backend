@@ -1,5 +1,7 @@
 package com.kraiwit.xogame.dto;
 
+import java.util.List;
+
 import com.kraiwit.xogame.model.Game;
 import com.kraiwit.xogame.model.enums.GameStatus;
 
@@ -13,6 +15,7 @@ public class GameResponse {
     private String currentPlayer;
     private String status;
     private String winner;
+    private List<int[]> winningLine;
 
     public GameResponse(Game game) {
         this.gameID = game.getGameId();
@@ -22,5 +25,8 @@ public class GameResponse {
         this.status = game.getStatus().toString();
         this.winner = (game.getStatus() == GameStatus.X_WIN) ? "X"
                 : (game.getStatus() == GameStatus.O_WIN) ? "O" : null;
+        if (game.getStatus() == GameStatus.X_WIN || game.getStatus() == GameStatus.O_WIN) {
+            this.winningLine = game.getWinningLine();
+        }
     }
 }

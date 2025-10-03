@@ -7,6 +7,8 @@ import lombok.Getter;
 import java.util.Arrays;
 import java.util.UUID;
 import java.util.stream.IntStream;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 public class Game {
@@ -84,6 +86,63 @@ public class Game {
             }
         }
         return true;
+    }
+
+    /**
+     * Calculates and returns the winning line coordinates.
+     * 
+     * @return List of int arrays [row, col] representing the winning line, or empty
+     *         list if no winner
+     */
+    public List<int[]> getWinningLine() {
+        List<int[]> winningLine = new ArrayList<>();
+
+        // Only calculate if game has a winner
+        if (status != GameStatus.X_WIN && status != GameStatus.O_WIN) {
+            return winningLine;
+        }
+
+        String winner = status == GameStatus.X_WIN ? "X" : "O";
+
+        // Check rows
+        for (int i = 0; i < boardSize; i++) {
+            final int row = i;
+            if (Arrays.stream(board[i]).allMatch(cell -> cell.equals(winner))) {
+                for (int col = 0; col < boardSize; col++) {
+                    winningLine.add(new int[] { row, col });
+                }
+                return winningLine;
+            }
+        }
+
+        // Check columns
+        for (int col = 0; col < boardSize; col++) {
+            final int c = col;
+            if (Arrays.stream(board).allMatch(row -> row[c].equals(winner))) {
+                for (int row = 0; row < boardSize; row++) {
+                    winningLine.add(new int[] { row, c });
+                }
+                return winningLine;
+            }
+        }
+
+        // Check main diagonal (top-left to bottom-right)
+        if (IntStream.range(0, boardSize).allMatch(i -> board[i][i].equals(winner))) {
+            for (int i = 0; i < boardSize; i++) {
+                winningLine.add(new int[] { i, i });
+            }
+            return winningLine;
+        }
+
+        // Check anti-diagonal (top-right to bottom-left)
+        if (IntStream.range(0, boardSize).allMatch(i -> board[i][boardSize - 1 - i].equals(winner))) {
+            for (int i = 0; i < boardSize; i++) {
+                winningLine.add(new int[] { i, boardSize - 1 - i });
+            }
+            return winningLine;
+        }
+
+        return winningLine;
     }
 
     public void cancelGame() {

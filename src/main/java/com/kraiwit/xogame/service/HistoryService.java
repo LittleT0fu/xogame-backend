@@ -35,7 +35,10 @@ public class HistoryService {
             };
             history.setWinner(winner);
             history.setCreatedAt(LocalDateTime.now());
-
+            List<int[]> winningLine = game.getWinningLine();
+            if (!winningLine.isEmpty()) {
+                history.setWinningLine(winningLine);
+            }
             historyRepository.save(history);
 
         } catch (Exception e) {
