@@ -49,6 +49,7 @@ spring.datasource.password=root
 By default, browsers block API requests from different origins (domains, ports, or protocols) for security reasons. The backend is configured to accept requests from specific origins:
 
 - http://localhost:5173 (for Vite apps) default frontend project use this
+
 - http://localhost:3000 (for React.js apps)
 - http://localhost:4200 (for Angular apps)
 
@@ -96,7 +97,7 @@ The application will start on **http://localhost:8080**
 | GET    | `/game`          | Health check endpoint   |
 | POST   | `/game/start`    | Start a new game        |
 | POST   | `/game/makemove` | Make a move in the game |
-| POST   | `/game/cancel`   | Cancel an ongoing game  |
+| POST   | `/game/cancel/:gameID`   | Cancel an ongoing game  |
 | GET    | `/game/history`  | Get game history        |
 
 ### Example Requests
