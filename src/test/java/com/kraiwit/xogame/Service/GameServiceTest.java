@@ -37,7 +37,7 @@ class GameServiceTest {
     void shouldStartNewGame() {
         GameRequest request = new GameRequest();
         request.setBoardSize(3);
-        request.setAI(false);
+        request.setVsAI(false);
         request.setFirstPlayer("X");
 
         GameResponse response = gameService.startGame(request);
@@ -54,7 +54,7 @@ class GameServiceTest {
     void shouldStartAIGame() {
         GameRequest request = new GameRequest();
         request.setBoardSize(3);
-        request.setAI(true);
+        request.setVsAI(true);
         request.setFirstPlayer("X");
 
         GameResponse response = gameService.startGame(request);
@@ -70,7 +70,7 @@ class GameServiceTest {
         // Start game
         GameRequest gameRequest = new GameRequest();
         gameRequest.setBoardSize(3);
-        gameRequest.setAI(false);
+        gameRequest.setVsAI(false);
         gameRequest.setFirstPlayer("X");
         GameResponse gameResponse = gameService.startGame(gameRequest);
 
@@ -122,7 +122,7 @@ class GameServiceTest {
         // Start game
         GameRequest gameRequest = new GameRequest();
         gameRequest.setBoardSize(3);
-        gameRequest.setAI(false);
+        gameRequest.setVsAI(false);
         gameRequest.setFirstPlayer("X");
         GameResponse gameResponse = gameService.startGame(gameRequest);
 
@@ -143,7 +143,7 @@ class GameServiceTest {
         // Start game
         GameRequest gameRequest = new GameRequest();
         gameRequest.setBoardSize(3);
-        gameRequest.setAI(false);
+        gameRequest.setVsAI(false);
         gameRequest.setFirstPlayer("X");
         GameResponse gameResponse = gameService.startGame(gameRequest);
 
@@ -176,7 +176,7 @@ class GameServiceTest {
         // Start AI game
         GameRequest gameRequest = new GameRequest();
         gameRequest.setBoardSize(3);
-        gameRequest.setAI(true);
+        gameRequest.setVsAI(true);
         gameRequest.setFirstPlayer("X");
         GameResponse gameResponse = gameService.startGame(gameRequest);
 

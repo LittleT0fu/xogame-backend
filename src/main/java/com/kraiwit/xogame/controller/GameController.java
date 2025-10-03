@@ -5,6 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import com.kraiwit.xogame.dto.GameRequest;
 import com.kraiwit.xogame.dto.GameResponse;
@@ -50,10 +51,10 @@ public class GameController {
         return ResponseEntity.ok(history);
     }
 
-    @PostMapping("/cancel")
-    public ResponseEntity<GameResponse> cancelGame(@Valid @RequestBody String gameId) {
-        GameResponse gameResponse = gameService.cancelGame(gameId);
+    @PostMapping("/cancle/{gameID}")
+    public ResponseEntity<GameResponse> cancelGame(@PathVariable String gameID) {
+        System.out.println("Cancel game: " + gameID);
+        GameResponse gameResponse = gameService.cancelGame(gameID);
         return ResponseEntity.ok(gameResponse);
     }
-
 }

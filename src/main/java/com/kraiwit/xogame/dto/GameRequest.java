@@ -13,7 +13,7 @@ public class GameRequest {
     @Min(value = 3, message = "Board size must be at least 3")
     private int boardSize;
     @NotNull(message = "Is AI is required")
-    private boolean isAI;
+    private boolean vsAI;
     @NotNull(message = "First player is required")
     @Pattern(regexp = "^[XO]$", message = "First player must be X or O")
     private String firstPlayer;
