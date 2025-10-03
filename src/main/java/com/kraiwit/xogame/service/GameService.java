@@ -23,8 +23,6 @@ public class GameService {
     private final Map<String, Game> games = new ConcurrentHashMap<>();
 
     public GameResponse startGame(GameRequest gameRequest) {
-        System.out.println("Start game: " + gameRequest.getBoardSize() + " " + gameRequest.isVsAI() + " "
-                + gameRequest.getFirstPlayer());
         Game game = new Game(gameRequest.getBoardSize(), gameRequest.isVsAI(), gameRequest.getFirstPlayer());
         games.put(game.getGameId(), game);
         return new GameResponse(game);
@@ -64,9 +62,7 @@ public class GameService {
     }
 
     public GameResponse cancelGame(String gameID) {
-        System.out.println("Cancel game: " + gameID);
         Game game = games.get(gameID);
-        System.out.println("Game: " + game);
         if (game == null) {
             throw new RuntimeException("Game not found.");
         }
